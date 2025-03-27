@@ -67,4 +67,22 @@ import { test, expect } from '@playwright/test';
   await page.getByRole('checkbox', { name: 'Użyj adresu kandydata', exact: true }).check();
   await page.getByRole('button', { name: 'Następny etap' }).click();
 
+  //Etap III - Preferencje
+
+  await page.getByRole('button', { name: 'dodaj Przedszkole „Kwiaty' }).click();
+  await page.getByRole('button', { name: 'dodaj Szkoła Podstawowa im.' }).click();
+  await page.getByRole('button', { name: 'Chcę zakończyć wybór' }).click();
+  await page.getByRole('button', { name: 'Następny etap' }).click();
+
+  //Etap III - Dodatkowe preferencje
+
+  await page.getByRole('checkbox', { name: 'Śniadanie i obiad' }).check();
+  await page.getByRole('checkbox', { name: 'Podwieczorek' }).check();
+  await page.locator('input[name="confirm_will_questionaire\\[stayFrom\\]"]').click();
+  await page.getByRole('cell', { name: '8:00', exact: true }).click();
+  await page.getByRole('cell', { name: ':50' }).click();
+  await page.getByRole('cell', { name: '14:00', exact: true }).click();
+  await page.getByRole('cell', { name: ':55' }).click();
+  await page.getByRole('button', { name: 'Weryfikacja danych i złożenie' }).click();
+
 });
