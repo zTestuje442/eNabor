@@ -3,12 +3,15 @@ import { test, expect } from '@playwright/test';
 
  test('get started link', async ({ page }) => {
   await page.goto('http://umbilgoraj.prezentacja.int.zeto.lublin.pl/');
+  
+  //Zaznaczanie Cookiess
 
   await expect(page.getByText('Informacja o plikach cookie').first()).toBeVisible();
-
   await page.locator("#enable_accept").check();
-  
   await page.locator("#ckaccept").click();
+
+  //Logowanie
+
   await page.getByRole('link', { name: 'Zaloguj' }).click();
   await page.getByRole('textbox', { name: 'adres email' }).click();
   await page.getByRole('textbox', { name: 'adres email' }).fill('automattest@enabor.loc');
@@ -19,6 +22,9 @@ import { test, expect } from '@playwright/test';
   await page.locator('.index-header-buttons > div > .chevron').click();
   await page.getByRole('link', { name: 'Przedszkole/Oddział przedszkolny' }).click();
   await page.getByRole('link', { name: 'Nowy wniosek rekrutacyjny do' }).click();
+  
+  //Etap I - Uzupełnienie danych kandydata
+
   await page.getByRole('textbox', { name: 'Imię *' }).click();
   await page.getByRole('textbox', { name: 'Imię *' }).fill('Marcin');
   await page.getByRole('textbox', { name: 'Nazwisko *' }).click();
@@ -34,6 +40,31 @@ import { test, expect } from '@playwright/test';
   await page.getByRole('textbox', { name: 'Kod pocztowy *' }).fill('20-387');
   await page.getByRole('textbox', { name: 'Poczta *' }).click();
   await page.getByRole('textbox', { name: 'Poczta *' }).fill('Lublin');
-
   await page.getByRole('button', { name: 'Następny etap' }).click();
+
+  //Etap II - Uzupełnienie danych rodziców / opiekunów
+  
+  //Matka
+  await page.locator('#guardian_stage_firstGuardian_guardian_firstName').click();
+  await page.locator('#guardian_stage_firstGuardian_guardian_firstName').fill('Marianna');
+  await page.locator('#guardian_stage_firstGuardian_guardian_lastName').click();
+  await page.locator('#guardian_stage_firstGuardian_guardian_lastName').fill('Chochlik');
+  await page.locator('#guardian_stage_firstGuardian_guardian_email').click();
+  await page.locator('#guardian_stage_firstGuardian_guardian_email').fill('tester2623@wp.pl');
+  await page.locator('#guardian_stage_firstGuardian_guardian_phone').click();
+  await page.locator('#guardian_stage_firstGuardian_guardian_phone').fill('344234432');
+  await page.locator('#guardian_stage_firstGuardian_guardian_useCandidateAddress').check();
+  
+  //Ojciec
+  await page.locator('#guardian_stage_secondGuardian_guardian_firstName').click();
+  await page.locator('#guardian_stage_secondGuardian_guardian_firstName').fill('Oliwier');
+  await page.locator('#guardian_stage_secondGuardian_guardian_lastName').click();
+  await page.locator('#guardian_stage_secondGuardian_guardian_lastName').fill('Nowakowski');
+  await page.locator('#guardian_stage_secondGuardian_guardian_email').click();
+  await page.locator('#guardian_stage_secondGuardian_guardian_email').fill('oliwier.nowakowski@o2.pl');
+  await page.locator('#guardian_stage_secondGuardian_guardian_phone').click();
+  await page.locator('#guardian_stage_secondGuardian_guardian_phone').fill('674837377');
+  await page.getByRole('checkbox', { name: 'Użyj adresu kandydata', exact: true }).check();
+  await page.getByRole('button', { name: 'Następny etap' }).click();
+
 });
