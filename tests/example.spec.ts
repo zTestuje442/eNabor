@@ -70,7 +70,6 @@ import { test, expect } from '@playwright/test';
   //Etap III - Preferencje
 
   await page.getByRole('button', { name: 'dodaj Przedszkole „Kwiaty' }).click();
-  await page.getByRole('button', { name: 'dodaj Szkoła Podstawowa im.' }).click();
   await page.getByRole('button', { name: 'Chcę zakończyć wybór' }).click();
   await page.getByRole('button', { name: 'Następny etap' }).click();
 
@@ -84,5 +83,28 @@ import { test, expect } from '@playwright/test';
   await page.getByRole('cell', { name: '14:00', exact: true }).click();
   await page.getByRole('cell', { name: ':55' }).click();
   await page.getByRole('button', { name: 'Weryfikacja danych i złożenie' }).click();
+
+  //Etap IV - Kryteria i załączniki
+
+  await page.getByRole('button', { name: 'Uruchom kreator' }).click();
+  await page.getByRole('button', { name: 'Nie' }).click();
+  await page.waitForTimeout(1000);
+  await page.getByRole('button', { name: 'Nie' }).click();
+  await page.getByRole('button', { name: 'Pomiń' }).click();
+  await page.getByRole('button', { name: 'Pomiń' }).click();
+  await page.getByRole('button', { name: 'Pomiń' }).click();
+  await page.getByRole('button', { name: 'Pomiń' }).click();
+  await page.getByRole('button', { name: 'Pomiń' }).click();
+  await page.getByRole('button', { name: 'Pomiń' }).click();
+  await page.getByRole('button', { name: 'Pomiń' }).click();
+  await page.getByRole('button', { name: 'Pomiń' }).click();
+  await page.getByRole('button', { name: 'Pomiń' }).click();
+  await page.getByRole('button', { name: 'Pomiń' }).click();
+  await page.getByRole('button', { name: 'Następny etap' }).click();
+
+  //Etap V - Podsumowanie wniosku
+
+  await page.getByRole('checkbox', { name: 'Oświadczam, że dane przedłoż' }).check();
+  await page.getByRole('button', { name: 'Złóż wniosek rekrutacyjny' }).click();
 
 });
